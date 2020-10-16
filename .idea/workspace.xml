@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b46cd03-3306-4b66-a9ef-27720459323e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/commandlinetools/Laravel_10_13_20__10_01_AM.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workflow.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workflow.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +214,10 @@
       <workItem from="1573734869858" duration="268000" />
       <workItem from="1573759165613" duration="599000" />
       <workItem from="1591102876207" duration="17758000" />
-      <workItem from="1602597672365" duration="217000" />
+      <workItem from="1602597672365" duration="3648000" />
+      <workItem from="1602680650232" duration="1419000" />
+      <workItem from="1602860676268" duration="171000" />
+      <workItem from="1602862970373" duration="2170000" />
     </task>
     <servers />
   </component>
@@ -237,7 +236,18 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="WindowStateProjectService">
+    <state x="693" y="298" width="524" height="480" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602863259816">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="693" y="298" width="524" height="480" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1080/1920.0.1280.720@0.0.1920.1080" timestamp="1602863259816" />
+    <state x="699" y="243" width="511" height="589" key="NewPhpClassDialog" timestamp="1602863245649">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="699" y="243" width="511" height="589" key="NewPhpClassDialog/0.0.1920.1080/1920.0.1280.720@0.0.1920.1080" timestamp="1602863245649" />
+    <state x="623" y="239" width="672" height="678" key="search.everywhere.popup" timestamp="1602620826699">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="623" y="239" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/1920.0.1280.720@0.0.1920.1080" timestamp="1602620826699" />
   </component>
 </project>
