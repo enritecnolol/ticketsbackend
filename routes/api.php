@@ -22,8 +22,11 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::get('user', 'UserController@getAuthenticatedUser');
     Route::post('logout', 'UserController@logout');
 
+    /*===============================/Productos\=======================================*/
+    Route::get('products/paginate', 'ProductsController@ProductsPaginate');
+
     /*===============================/Clientes\=======================================*/
-    Route::get('clients', 'ClientsController@getClients');
+    Route::get('clients/paginate', 'ClientsController@getClients');
 
 
     /*===============================/Company\=======================================*/
