@@ -15,6 +15,20 @@ class ClientsController extends Controller
     }
     public function getClients()
     {
-        return apiSuccess($this->service->getClients());
+        $size = isset($request['size']) ? $request['companies']: '10';
+        $search = isset($request['search']) ? $request['search']: '';
+
+        try{
+            $res = $this->service->getClients($size, $search);
+
+            if(!empty($res) && !is_null($res)){
+                return apiSuccess($res);
+            }else{
+                return apiSuccess(null, "No hay data disponible");
+            }
+
+        }catch (\Exception $e){
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
     }
 }
