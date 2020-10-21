@@ -12,6 +12,7 @@ class ProductsServices
             ->table('public.inv_productos')
             ->select('cia_codigo', 'prod_codigo', 'prod_referencia', 'prod_nombre', 'prod_precio1')
             ->where('prod_referencia', $search)
+            ->orwhere('prod_codigo', $search)
             ->orWhere('prod_nombre', 'like', '%' . $search . '%')
             ->paginate($size);
 
