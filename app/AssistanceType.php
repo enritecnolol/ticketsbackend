@@ -4,9 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class AssistanceType extends Model
 {
-    protected $table = 'products';
+    protected $table = 'public.assistance_type';
     protected $connection = 'client';
-
 }

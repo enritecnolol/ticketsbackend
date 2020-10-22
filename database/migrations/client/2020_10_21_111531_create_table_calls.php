@@ -17,13 +17,13 @@ class CreateTableCalls extends Migration
             $table->bigIncrements('id');
             $table->integer('company_id');
             $table->integer('client_id');
-            $table->integer('client_id');
             $table->dateTime('date');
-            $table->string('remitent');
+            $table->string('sender');
             $table->string('phone_number');
             $table->longText('motive');
             $table->longText('solution');
             $table->integer('duration');
+            $table->boolean('status');
             $table->timestamps();
             $table->integer('user_id');
         });

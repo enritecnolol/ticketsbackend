@@ -29,6 +29,18 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::get('clients/paginate', 'ClientsController@getClients');
 
 
+    /*===============================\Llamadas\=======================================*/
+    Route::post('call', 'CallsController@storeCalls');
+    Route::get('calls', 'CallsController@getCalls');
+    Route::put('call', 'CallsController@editCall');
+    Route::delete('call', 'CallsController@deleteCall');
+
+    /*===============================\Tipo de asistencia\=======================================*/
+    Route::post('assistanceType', 'CallsController@storeAssistanceType');
+    Route::get('assistanceTypes', 'CallsController@getAssistanceType');
+    Route::put('assistanceType', 'CallsController@editAssistanceType');
+    Route::delete('assistanceType', 'CallsController@deleteAssistanceType');
+
     /*===============================/Company\=======================================*/
     Route::post('company', 'CompaniesController@store');
     Route::get('company', 'CompaniesController@index');

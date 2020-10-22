@@ -16,6 +16,7 @@ class CreateTableAssistenceType extends Migration
         Schema::connection('client')->create('assistance_type', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateTableAssistenceType extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asssitence_type');
+        Schema::dropIfExists('assistance_type');
     }
 }

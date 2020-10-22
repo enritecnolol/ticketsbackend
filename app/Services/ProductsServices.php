@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 class ProductsServices
 {
-    public function getProductsPaginate($size = 10, $search)
+    public function getProductsPaginate($size, $search)
     {
         $products = DB::connection('client')
             ->table('public.inv_productos')

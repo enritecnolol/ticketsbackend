@@ -15,7 +15,7 @@ class CreateTableAssistenceCalls extends Migration
     {
         Schema::create('assistance_calls', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('ticket_id');
+            $table->integer('call_id');
             $table->integer('assistance_type_id');
             $table->timestamps();
         });
