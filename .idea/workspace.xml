@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="2b46cd03-3306-4b66-a9ef-27720459323e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/AssistanceType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AssistanceType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/AssistanceCalls.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AssistanceCalls.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Call.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Call.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CallsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CallsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/CallsServices.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/CallsServices.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/client/2020_10_21_111531_create_table_calls.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/client/2020_10_21_111531_create_table_calls.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,7 +224,7 @@
       <workItem from="1603116582390" duration="4950000" />
       <workItem from="1603291637079" duration="4318000" />
       <workItem from="1603305730423" duration="800000" />
-      <workItem from="1603392565249" duration="8925000" />
+      <workItem from="1603392565249" duration="13865000" />
     </task>
     <servers />
   </component>
@@ -252,9 +256,9 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="699" y="243" width="511" height="585" key="NewPhpClassDialog/0.0.1920.1080/1920.0.1280.720@0.0.1920.1080" timestamp="1603396191494" />
-    <state x="623" y="239" width="672" height="678" key="search.everywhere.popup" timestamp="1603460988806">
+    <state x="623" y="239" width="672" height="678" key="search.everywhere.popup" timestamp="1603463013999">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="623" y="239" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/1920.0.1280.720@0.0.1920.1080" timestamp="1603460988806" />
+    <state x="623" y="239" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/1920.0.1280.720@0.0.1920.1080" timestamp="1603463013999" />
   </component>
 </project>

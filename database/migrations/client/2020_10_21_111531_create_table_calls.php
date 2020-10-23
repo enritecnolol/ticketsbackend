@@ -15,8 +15,8 @@ class CreateTableCalls extends Migration
     {
         Schema::connection('client')->create('calls', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('company_id');
-            $table->integer('client_id');
+            $table->string('company_id');
+            $table->string('client_id');
             $table->dateTime('date');
             $table->string('sender');
             $table->string('phone_number');

@@ -14,24 +14,26 @@ class CallsServices
 {
     public function insertCall($data)
     {
-        $call = Call::create([
-            'client_id' => $data['client_id'],
-            'date' => $data['date'],
-            'sender' => $data['sender'],
-            'phone_number' => $data['phone_number'],
-            'motive' => $data['motive'],
-            'solution' => $data['solution'],
-            'duration' => $data['duration'],
-            'status' => true,
-            'user_id' => Auth::id(),
-        ]);
+        $call = new Call();
+        $call->client_id = $data['client_id'];
+        $call->user_id = Auth::id();
+        $call->company_id = $data['company_id'];
+        $call->date = $data['date'];
+        $call->sender = $data['sender'];
+        $call->phone_number = $data['phone_number'];
+        $call->motive = $data['motive'];
+        $call->solution = $data['solution'];
+        $call->duration = $data['duration'];
+        $call->status = true;
+        $call->save();
 
         foreach ($data['assistance_types'] as $assistance_type_id)
         {
-            AssistanceCalls::create([
-                'call_id' => $call->id,
-                'assistance_type_id' => $assistance_type_id
-            ]);
+            $assistance_call = new AssistanceCalls();
+            $assistance_call->call_id = $call->id;
+            $assistance_call->assistance_type_id = $assistance_type_id;
+            $assistance_call->save();
+
         }
 
         return $call;

@@ -35,10 +35,10 @@ class CallsController extends Controller
         DB::connection('client')->beginTransaction();
         try{
 
-            $this->service->insertCall($request);
+            $res = $this->service->insertCall($request);
             DB::connection('client')->commit();
 
-            return apiSuccess(null, "Llamada insertada correctamente");
+            return apiSuccess($res, "Llamada insertada correctamente");
 
         }catch (\Exception $e){
             DB::connection('client')->rollBack();
@@ -132,7 +132,7 @@ class CallsController extends Controller
             return response()->json($validator->toJson(), 400);
         }
 
-        if(AssistanceType::where('name', strtoupper($request->name))->first() != null){
+        if(AssistanceType::where('name', $request->name)->first() != null){
             return apiError(null, "Este tipo de asistencia ya existe", 201);
         }
 
@@ -161,7 +161,7 @@ class CallsController extends Controller
             return response()->json($validator->toJson(), 400);
         }
 
-        if(AssistanceType::where('name', strtoupper($request->name))->first() != null){
+        if(AssistanceType::where('name', $request->name)->first() != null){
             return apiError(null, "Este tipo de asistencia ya existe", 201);
         }
 
