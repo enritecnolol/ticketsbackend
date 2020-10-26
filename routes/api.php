@@ -41,6 +41,9 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::put('assistanceType', 'CallsController@editAssistanceType');
     Route::delete('assistanceType', 'CallsController@deleteAssistanceType');
 
+    /*===============================\Tecnicos\=======================================*/
+    Route::get('technicians', 'TechniciansController@TechniciansPaginate');
+
     /*===============================/Company\=======================================*/
     Route::post('company', 'CompaniesController@store');
     Route::get('company', 'CompaniesController@index');
