@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TicketsStatus extends Model
+class TicketType extends Model
 {
-    protected $table = 'public.statuses';
+    protected $table = 'public.tickets_type';
     protected $connection = 'client';
 
     protected $fillable = ['company_id', 'name'];

@@ -17,6 +17,7 @@ class CreateTableTicketsType extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->integer('company_id');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateTableTicketsType extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tickets_type');
+        Schema::connection('client')->dropIfExists('tickets_type');
     }
 }
