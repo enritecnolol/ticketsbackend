@@ -56,7 +56,7 @@ class CategoriesController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->toJson(), 400);
+            return response()->json($validator->getMessageBag(), 400);
         }
 
         if(Category::where('name', strtoupper($request->name))->first() != null){
@@ -81,7 +81,7 @@ class CategoriesController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->toJson(), 400);
+            return response()->json($validator->getMessageBag(), 400);
         }
 
         if(Category::where('name', $request->name)->first()){

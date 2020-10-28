@@ -29,7 +29,7 @@ class CompaniesController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->toJson(), 400);
+            return response()->json($validator->getMessageBag(), 400);
         }
 
         DB::connection('client')->beginTransaction();
@@ -58,7 +58,7 @@ class CompaniesController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->toJson(), 400);
+            return response()->json($validator->getMessageBag(), 400);
         }
 
         DB::connection('client')->beginTransaction();

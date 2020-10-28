@@ -29,7 +29,7 @@ class CallsController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->toJson(), 400);
+            return response()->json($validator->getMessageBag(), 400);
         }
 
         DB::connection('client')->beginTransaction();
@@ -59,7 +59,7 @@ class CallsController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->toJson(), 400);
+            return response()->json($validator->getMessageBag(), 400);
         }
 
         DB::connection('client')->beginTransaction();
@@ -83,7 +83,7 @@ class CallsController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->toJson(), 400);
+            return response()->json($validator->getMessageBag(), 400);
         }
 
         DB::connection('client')->beginTransaction();
@@ -129,7 +129,7 @@ class CallsController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->toJson(), 400);
+            return response()->json($validator->getMessageBag(), 400);
         }
 
         if(AssistanceType::where('name', $request->name)->first() != null){
@@ -158,7 +158,7 @@ class CallsController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->toJson(), 400);
+            return response()->json($validator->getMessageBag(), 400);
         }
 
         if(AssistanceType::where('name', $request->name)->first() != null){
@@ -186,7 +186,7 @@ class CallsController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->toJson(), 400);
+            return response()->json($validator->getMessageBag(), 400);
         }
 
         DB::connection('client')->beginTransaction();

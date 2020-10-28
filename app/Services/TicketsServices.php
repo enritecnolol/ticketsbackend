@@ -5,8 +5,11 @@ namespace App\Services;
 
 
 use App\Origin;
+use App\Ticket;
 use App\TicketsStatus;
 use App\TicketType;
+use App\TicketUser;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TicketsServices
@@ -129,5 +132,78 @@ class TicketsServices
             ->get();
 
         return $origin;
+    }
+
+    public function insertTicket($data)
+    {
+        $ticket = Ticket::create([
+            'status_id' => $data['status_id'],
+            'client_id' => $data['client_id'],
+            'user_id' => Auth::id(),
+            'tickets_type_id' => $data['tickets_type_id'],
+            'company_id' => $data['company_id'],
+            'priority_id' => $data['priority_id'],
+            'title' => $data['title'],
+            'note' => $data['note'],
+            'status' => true
+        ]);
+
+        foreach ($data['assigned_to'] as $assigned_to)
+        {
+            TicketUser::create([
+                'user_id' => $assigned_to,
+                'tickets_id' => $ticket->id
+            ]);
+        }
+
+        return $ticket;
+    }
+
+    public function editTicket($data)
+    {
+        $ticket = Ticket::find($data['id']);
+        $ticket->status_id = $data['status_id'];
+        $ticket->client_id = $data['client_id'];
+        $ticket->tickets_type_id = $data['tickets_type_id'];
+        $ticket->company_id = $data['company_id'];
+        $ticket->priority_id = $data['priority_id'];
+        $ticket->title = $data['title'];
+        $ticket->note = $data['note'];
+        $ticket->status = $data['status'];
+        $ticket->update();
+
+        DB::connection('client')
+            ->table('public.tickets_user')
+            ->where('ticket_id', $data['id'])
+            ->delete();
+
+        foreach ($data['assigned_to'] as $assigned_to)
+        {
+            TicketUser::create([
+                'user_id' => $assigned_to,
+                'tickets_id' => $data['id']
+            ]);
+        }
+
+        return $ticket;
+    }
+
+    public function deleteTicket($data)
+    {
+        $ticket = Ticket::find($data['id']);
+        $ticket->status = false;
+        $ticket->update();
+
+        return $ticket;
+    }
+
+    public function getTickets($search, $size)
+    {
+        $tickets = DB::connection('client')
+            ->table('public.tickets')
+            ->where('title', $search)
+            ->paginate($size);
+
+        return $tickets;
     }
 }

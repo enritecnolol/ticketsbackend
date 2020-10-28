@@ -26,7 +26,7 @@ class TicketsController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->toJson(), 400);
+            return response()->json($validator->getMessageBag(), 400);
         }
 
         if(TicketsStatus::where('name', strtoupper($request->name))->first() != null){
@@ -54,7 +54,7 @@ class TicketsController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->toJson(), 400);
+            return response()->json($validator->getMessageBag(), 400);
         }
 
         if(TicketsStatus::where('name', strtoupper($request->name))->first() != null){
@@ -82,7 +82,7 @@ class TicketsController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->toJson(), 400);
+            return response()->json($validator->getMessageBag(), 400);
         }
 
         DB::connection('client')->beginTransaction();
@@ -123,7 +123,7 @@ class TicketsController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->toJson(), 400);
+            return response()->json($validator->getMessageBag(), 400);
         }
 
         if(TicketType::where('name', strtoupper($request->name))->first() != null){
@@ -151,7 +151,7 @@ class TicketsController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->toJson(), 400);
+            return response()->json($validator->getMessageBag(), 400);
         }
 
         if(TicketType::where('name', strtoupper($request->name))->first() != null){
@@ -179,7 +179,7 @@ class TicketsController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->toJson(), 400);
+            return response()->json($validator->getMessageBag(), 400);
         }
 
         DB::connection('client')->beginTransaction();
@@ -220,7 +220,7 @@ class TicketsController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->toJson(), 400);
+            return response()->json($validator->getMessageBag(), 400);
         }
 
         if(Origin::where('name', strtoupper($request->name))->first() != null){
@@ -248,7 +248,7 @@ class TicketsController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->toJson(), 400);
+            return response()->json($validator->getMessageBag(), 400);
         }
 
         if(Origin::where('name', strtoupper($request->name))->first() != null){
@@ -276,7 +276,7 @@ class TicketsController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->toJson(), 400);
+            return response()->json($validator->getMessageBag(), 400);
         }
 
         DB::connection('client')->beginTransaction();
@@ -298,6 +298,112 @@ class TicketsController extends Controller
 
         try{
             $res = $this->service->getOrigins();
+
+            if(!empty($res) && !is_null($res)){
+                return apiSuccess($res);
+            }else{
+                return apiSuccess(null, "No hay data disponible");
+            }
+
+        }catch (\Exception $e){
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
+
+    public function storeTicket (Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'status_id'=> 'required',
+            'client_id'=> 'required',
+            'tickets_type_id'=> 'required',
+            'company_id'=> 'required',
+            'priority_id'=> 'required',
+            'title'=> 'required',
+            'note'=> 'required',
+            'assigned_to'=> 'required'
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->getMessageBag(), 400);
+        }
+
+        DB::connection('client')->beginTransaction();
+        try{
+
+            $this->service->insertTicket($request);
+            DB::connection('client')->commit();
+            return apiSuccess(null, "Ticket insertado correctamente");
+
+        }catch (\Exception $e){
+
+            DB::connection('client')->rollBack();
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
+
+    public function editTicket (Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id'=> 'required',
+            'status_id'=> 'required',
+            'client_id'=> 'required',
+            'tickets_type_id'=> 'required',
+            'company_id'=> 'required',
+            'priority_id'=> 'required',
+            'title'=> 'required',
+            'note'=> 'required',
+            'assigned_to'=> 'required'
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->getMessageBag(), 400);
+        }
+
+        DB::connection('client')->beginTransaction();
+        try{
+
+            $this->service->editTicket($request);
+            DB::connection('client')->commit();
+            return apiSuccess(null, "Ticket editado correctamente");
+
+        }catch (\Exception $e){
+
+            DB::connection('client')->rollBack();
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
+
+    public function deleteTicket (Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id'=> 'required'
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->getMessageBag(), 400);
+        }
+
+        DB::connection('client')->beginTransaction();
+        try{
+
+            $this->service->deleteTicket($request);
+            DB::connection('client')->commit();
+            return apiSuccess(null, "Ticket Eliminada correctamente");
+
+        }catch (\Exception $e){
+
+            DB::connection('client')->rollBack();
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
+
+    public function getTickets (Request $request)
+    {
+        $size = isset($request['size']) ? $request['size']: '10';
+        $search = isset($request['search']) ? $request['search']: '';
+
+        try{
+            $res = $this->service->getTickets($search, $size);
 
             if(!empty($res) && !is_null($res)){
                 return apiSuccess($res);

@@ -16,13 +16,14 @@ class CreateTableTickets extends Migration
         Schema::connection('client')->create('tickets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('status_id');
-            $table->integer('client_id');
+            $table->string('client_id');
             $table->integer('user_id');
             $table->integer('tickets_type_id');
-            $table->integer('company_id');
+            $table->string('company_id');
             $table->integer('priority_id');
             $table->string('tittle');
             $table->longText('note');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
@@ -34,6 +35,6 @@ class CreateTableTickets extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tickets');
+        Schema::connection('client')->dropIfExists('tickets');
     }
 }

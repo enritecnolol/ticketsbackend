@@ -53,6 +53,11 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::post('origin', 'TicketsController@storeOrigin');
     Route::put('origin', 'TicketsController@editOrigin');
     Route::delete('origin', 'TicketsController@deleteOrigin');
+    /*===============================\Tickets\=======================================*/
+    Route::get('tickets', 'TicketsController@getTickets');
+    Route::post('ticket', 'TicketsController@storeTicket');
+    Route::put('ticket', 'TicketsController@editTicket');
+    Route::delete('ticket', 'TicketsController@deleteTicket');
 
     /*===============================/Company\=======================================*/
     Route::post('company', 'CompaniesController@store');
