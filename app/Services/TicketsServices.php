@@ -9,6 +9,8 @@ use App\Ticket;
 use App\TicketsStatus;
 use App\TicketType;
 use App\TicketUser;
+use App\Trace;
+use App\TraceEntries;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -148,6 +150,8 @@ class TicketsServices
             'status' => true
         ]);
 
+        Trace::create(['ticket_id' => $ticket->id]);
+
         foreach ($data['assigned_to'] as $assigned_to)
         {
             TicketUser::create([
@@ -205,5 +209,44 @@ class TicketsServices
             ->paginate($size);
 
         return $tickets;
+    }
+
+    public function insertTraceEntries($data)
+    {
+        $trace_id = Trace::where('ticket_id', $data['ticket_id'])->first();
+
+        $trace_entries = TraceEntries::create([
+            'trace_id' => $trace_id['id'],
+            'user_id' => Auth::id(),
+            'comment' => $data['comment']
+        ]);
+
+        return $trace_entries;
+    }
+
+    public function editTraceEntries($data)
+    {
+        $trace_entries = TraceEntries::find($data['trace_entries_id']);
+        $trace_entries->comment = $data['comment'];
+        $trace_entries->update();
+
+        return $trace_entries;
+    }
+
+    public function deleteTraceEntries($data)
+    {
+        TraceEntries::find($data['trace_entries_id'])->delete();
+    }
+
+    public function getTraceEntriesOfTicket($data)
+    {
+        $trace = Trace::where('ticket_id', $data['ticket_id'])->first();
+
+        $traces = DB::connection('client')
+            ->table('public.trace_entries')
+            ->where('trace_id', $trace['trace_id'])
+            ->get()
+        ;
+        return $traces;
     }
 }

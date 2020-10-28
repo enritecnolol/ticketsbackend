@@ -15,7 +15,7 @@ class CreateTableTraces extends Migration
     {
         Schema::connection('client')->create('traces', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('task_id');
+            $table->integer('ticket_id');
             $table->timestamps();
         });
     }

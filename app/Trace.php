@@ -8,4 +8,6 @@ class Trace extends Model
 {
     protected $table = 'public.traces';
     protected $connection = 'client';
+
+    protected $fillable = ['ticket_id'];
 }

@@ -416,4 +416,95 @@ class TicketsController extends Controller
         }
     }
 
+    public function storeTraceEntries (Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'ticket_id'=> 'required',
+            'comment'=> 'required',
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->getMessageBag(), 400);
+        }
+
+        DB::connection('client')->beginTransaction();
+        try{
+
+            $this->service->insertTraceEntries($request);
+            DB::connection('client')->commit();
+            return apiSuccess(null, "Seguimiento insertado correctamente");
+
+        }catch (\Exception $e){
+
+            DB::connection('client')->rollBack();
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
+
+    public function editTraceEntries (Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'trace_entries_id'=> 'required',
+            'comment'=> 'required',
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->getMessageBag(), 400);
+        }
+
+        DB::connection('client')->beginTransaction();
+        try{
+
+            $this->service->editTraceEntries($request);
+            DB::connection('client')->commit();
+            return apiSuccess(null, "Seguimiento editado correctamente");
+
+        }catch (\Exception $e){
+
+            DB::connection('client')->rollBack();
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
+
+    public function deleteTraceEntries (Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'trace_entries_id'=> 'required'
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->getMessageBag(), 400);
+        }
+
+        DB::connection('client')->beginTransaction();
+        try{
+
+            $this->service->deleteTraceEntries($request);
+            DB::connection('client')->commit();
+            return apiSuccess(null, "Seguimiento eliminado correctamente");
+
+        }catch (\Exception $e){
+
+            DB::connection('client')->rollBack();
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
+
+    public function getTraceEntriesOfTicket (Request $request)
+    {
+
+        try{
+            $res = $this->service->getTraceEntriesOfTicket($request['ticket_id']);
+
+            if(!empty($res) && !is_null($res)){
+                return apiSuccess($res);
+            }else{
+                return apiSuccess(null, "No hay data disponible");
+            }
+
+        }catch (\Exception $e){
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
+
 }
