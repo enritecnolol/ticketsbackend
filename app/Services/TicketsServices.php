@@ -205,11 +205,14 @@ class TicketsServices
     {
         $tickets = DB::connection('client')
             ->table('public.tickets')
-            ->where('status', true)
-//            ->where('title', $search)
-            ->paginate($size);
+            ->where('status', true);
 
-        return $tickets;
+        if($search)
+        {
+            $tickets->where('title', 'like', '%' . $search . '%');
+        }
+
+        return $tickets->paginate($size);
     }
 
     public function insertTraceEntries($data)
