@@ -209,7 +209,7 @@ class TicketsServices
 //            ->where('title', $search)
             ->paginate($size);
 
-        return $search;
+        return $tickets;
     }
 
     public function insertTraceEntries($data)
