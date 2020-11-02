@@ -207,8 +207,7 @@ class TicketsServices
             ->table('public.tickets')
 //            ->where('title', $search)
 //            ->where('status', true)
-//            ->paginate($size);
-        ->get();
+            ->paginate($size);
 
         return $tickets;
     }
