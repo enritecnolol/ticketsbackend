@@ -206,6 +206,7 @@ class TicketsServices
         $tickets = DB::connection('client')
             ->table('public.tickets')
             ->where('title', $search)
+            ->where('status', true)
             ->paginate($size);
 
         return $tickets;
