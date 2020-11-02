@@ -400,7 +400,7 @@ class TicketsController extends Controller
     public function getTickets (Request $request)
     {
         $size = isset($request['size']) ? $request['size']: '10';
-        $search = isset($request['search']) ? $request['search']: '';
+        $search = isset($request['search']) ? $request['search']: null;
 
         try{
             $res = $this->service->getTickets($search, $size);
