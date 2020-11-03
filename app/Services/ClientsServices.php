@@ -24,4 +24,12 @@ class ClientsServices
             ->orWhere('clie_nombre', 'like', '%' . $search . '%')
             ->paginate($size);
     }
+    public function getClientsOfSelect(){
+
+        return DB::connection('client')
+            ->table('public.cxc_clientes')
+            ->select('cia_codigo', 'clie_codigo', 'clie_nombre')
+            ->get();
+
+    }
 }

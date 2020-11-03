@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::get('products/paginate', 'ProductsController@ProductsPaginate');
     /*===============================/Clientes\=======================================*/
     Route::get('clients/paginate', 'ClientsController@getClients');
+    Route::get('clients/select', 'ClientsController@getClientsOfSelect');
     /*===============================\Llamadas\=======================================*/
     Route::post('call', 'CallsController@storeCalls');
     Route::get('calls', 'CallsController@getCalls');

@@ -31,4 +31,22 @@ class ClientsController extends Controller
             return apiError(null, $e->getMessage(), $e->getCode());
         }
     }
+
+    public function getClientsOfSelect()
+    {
+
+        try{
+            $res = $this->service->getClientsOfSelect();
+
+            if(!empty($res) && !is_null($res)){
+                return apiSuccess($res);
+            }else{
+                return apiSuccess(null, "No hay data disponible");
+            }
+
+        }catch (\Exception $e){
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+
+    }
 }
