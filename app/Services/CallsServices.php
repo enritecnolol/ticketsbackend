@@ -80,8 +80,10 @@ class CallsServices
     public function getCalls($size, $search)
     {
         $calls = DB::connection('client')
-            ->table('public.calls')
-            ->where('status', true)
+            ->table(DB::raw('public.calls call'))
+            ->join(DB::raw('public.cxc_clientes client'), 'call.client_id', '=', 'client.clie_codigo')
+            ->where('call.status', true)
+            ->select('call.*', 'client.clie_nombre')
             ->paginate($size);
 
         return $calls;
