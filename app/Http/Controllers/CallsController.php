@@ -20,12 +20,13 @@ class CallsController extends Controller
     public function storeCalls (Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name'=> 'required',
             'client_id'=> 'required',
             'phone_number'=> 'required',
             'sender'=> 'required',
             'motive'=> 'required',
             'duration'=> 'required',
+            'assistance_types' => 'required',
+            'solution' => 'required'
         ]);
 
         if($validator->fails()){

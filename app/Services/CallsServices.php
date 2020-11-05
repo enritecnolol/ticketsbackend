@@ -15,10 +15,13 @@ class CallsServices
     public function insertCall($data)
     {
         $call = new Call();
-        $call->client_id = $data['client_id'];
+        $call->client_id = $data['client_id']['clie_codigo'];
         $call->user_id = Auth::id();
-        $call->company_id = $data['company_id'];
-        $call->date = $data['date'];
+        $call->company_id = '0001';
+        $fechaDate = $data['date'];
+        $fechaTime = $data['time'];
+        $fecha = date('Y-m-d H:i:s', strtotime("$fechaDate $fechaTime"));
+        $call->date = $fecha;
         $call->sender = $data['sender'];
         $call->phone_number = $data['phone_number'];
         $call->motive = $data['motive'];
@@ -43,8 +46,11 @@ class CallsServices
     {
         $call = Call::find($data['id']);
 
-        $call->client_id = $data['client_id'];
-        $call->date = $data['date'];
+        $call->client_id = $data['client_id']['clie_codigo'];
+        $fechaDate = $data['date'];
+        $fechaTime = $data['time'];
+        $fecha = date('Y-m-d H:i:s', strtotime("$fechaDate $fechaTime"));
+        $call->date = $fecha;
         $call->sender = $data['sender'];
         $call->phone_number = $data['phone_number'];
         $call->motive = $data['motive'];
