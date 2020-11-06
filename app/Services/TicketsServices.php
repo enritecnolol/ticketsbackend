@@ -60,7 +60,8 @@ class TicketsServices
     {
         $ticketType = TicketType::create([
             'name' => strtoupper($data['name']),
-            'company_id' => $data['company_id']
+            'company_id' => $data['company_id'],
+            'status' => true
         ]);
 
         return $ticketType;

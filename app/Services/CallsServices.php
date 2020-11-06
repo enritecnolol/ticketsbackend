@@ -123,13 +123,17 @@ class CallsServices
         return $assistanceType;
     }
 
-    public function getAssistanceType()
+    public function getAssistanceType($search)
     {
         $assistanceType = DB::connection('client')
             ->table('public.assistance_type')
-            ->where('status', true)
-            ->get();
+            ->where('status', true);
 
-        return $assistanceType;
+        if($search)
+        {
+            $assistanceType->where('name', 'like', '%' . $search . '%');
+        }
+
+        return $assistanceType ->get();
     }
 }

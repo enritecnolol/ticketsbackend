@@ -204,10 +204,12 @@ class CallsController extends Controller
         }
     }
 
-    public function getAssistanceType()
+    public function getAssistanceType(Request $request)
     {
+        $search = isset($request['search']) ? $request['search']: '';
+
         try{
-            $res = $this->service->getAssistanceType();
+            $res = $this->service->getAssistanceType($search);
 
             if(!empty($res) && !is_null($res)){
                 return apiSuccess($res);

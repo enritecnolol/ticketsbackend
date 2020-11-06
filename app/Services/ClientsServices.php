@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class ClientsServices
 {
     public function getClients($size, $search){
-        return DB::connection('client')
+        $clients =  DB::connection('client')
             ->table('public.cxc_clientes')
             ->select('cia_codigo',
                 'clie_codigo',
@@ -19,10 +19,15 @@ class ClientsServices
                 'clie_ciudad',
                 'clie_telefonos',
                 'clie_contacto'
-            )
-            ->where('clie_codigo', $search)
-            ->orWhere('clie_nombre', 'like', '%' . $search . '%')
-            ->paginate($size);
+            );
+
+        if($search)
+        {
+            $clients->where('clie_codigo', $search)
+                ->orWhere('clie_nombre', 'like', '%' . $search . '%');
+        }
+
+        return $clients->paginate($size);
     }
     public function getClientsOfSelect(){
 

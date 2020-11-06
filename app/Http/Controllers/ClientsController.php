@@ -13,7 +13,7 @@ class ClientsController extends Controller
     {
         $this->service = $service;
     }
-    public function getClients()
+    public function getClients(Request $request)
     {
         $size = isset($request['size']) ? $request['companies']: '10';
         $search = isset($request['search']) ? $request['search']: '';
