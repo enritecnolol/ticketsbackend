@@ -9,5 +9,5 @@ class TicketType extends Model
     protected $table = 'public.tickets_type';
     protected $connection = 'client';
 
-    protected $fillable = ['company_id', 'name'];
+    protected $fillable = ['company_id', 'name', 'status'];
 }
