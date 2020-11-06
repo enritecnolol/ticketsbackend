@@ -9,5 +9,5 @@ class AssistanceCalls extends Model
     protected $table = 'public.assistance_calls';
     protected $connection = 'client';
 
-    protected $fillable = ['name', 'status'];
+    protected $fillable = ['call_id', 'assistance_type_id'];
 }
