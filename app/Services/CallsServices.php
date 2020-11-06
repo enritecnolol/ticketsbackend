@@ -141,7 +141,9 @@ class CallsServices
     {
         $assistance_calls = DB::connection('client')
             ->table('public.assistance_calls')
-            ->where('call_id', $call_id);
+            ->where('call_id', $call_id)
+            ->select('assistance_type_id')
+        ;
 
         return $assistance_calls->get();
     }
