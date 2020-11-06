@@ -136,4 +136,13 @@ class CallsServices
 
         return $assistanceType->get();
     }
+
+    public function getCallAssistanceType($call_id)
+    {
+        $assistance_calls = DB::connection('client')
+            ->table('public.assistance_calls')
+            ->where('call_id', $call_id);
+
+        return $assistance_calls->get();
+    }
 }

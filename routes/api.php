@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::delete('call', 'CallsController@deleteCall');
     /*===============================\Tipo de asistencia\=======================================*/
     Route::post('assistanceType', 'CallsController@storeAssistanceType');
+    Route::get('call/assistanceTypes', 'CallsController@getCallAssistanceType');
     Route::get('assistanceTypes', 'CallsController@getAssistanceType');
     Route::put('assistanceType', 'CallsController@editAssistanceType');
     Route::delete('assistanceType', 'CallsController@deleteAssistanceType');

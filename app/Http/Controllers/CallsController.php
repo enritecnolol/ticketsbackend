@@ -221,4 +221,22 @@ class CallsController extends Controller
             return apiError(null, $e->getMessage(), $e->getCode());
         }
     }
+
+    public function getCallAssistanceType(Request $request)
+    {
+        $call_id = isset($request['call_id']) ? $request['call_id']: '';
+
+        try{
+            $res = $this->service->getCallAssistanceType($call_id);
+
+            if(!empty($res) && !is_null($res)){
+                return apiSuccess($res);
+            }else{
+                return apiSuccess(null, "No hay data disponible");
+            }
+
+        }catch (\Exception $e){
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
 }

@@ -508,4 +508,101 @@ class TicketsController extends Controller
         }
     }
 
+    public function storePriorities (Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name'=> 'required'
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->getMessageBag(), 400);
+        }
+
+        if(TicketsStatus::where('name', strtoupper($request->name))->first() != null){
+            return apiError(null, "Estado de ticket ya existe", 201);
+        }
+
+        DB::connection('client')->beginTransaction();
+        try{
+
+            $this->service->insertStatus($request);
+            DB::connection('client')->commit();
+            return apiSuccess(null, "Estado de ticket insertado correctamente");
+
+        }catch (\Exception $e){
+
+            DB::connection('client')->rollBack();
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
+
+    public function editPriorities (Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name'=> 'required'
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->getMessageBag(), 400);
+        }
+
+        if(TicketsStatus::where('name', strtoupper($request->name))->first() != null){
+            return apiError(null, "Esta categoria ya existe", 201);
+        }
+
+        DB::connection('client')->beginTransaction();
+        try{
+
+            $this->service->editStatus($request);
+            DB::connection('client')->commit();
+            return apiSuccess(null, "Estado de ticket editado correctamente");
+
+        }catch (\Exception $e){
+
+            DB::connection('client')->rollBack();
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
+
+    public function deletePriorities (Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id'=> 'required'
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->getMessageBag(), 400);
+        }
+
+        DB::connection('client')->beginTransaction();
+        try{
+
+            $this->service->deleteStatus($request);
+            DB::connection('client')->commit();
+            return apiSuccess(null, "Estado de ticket Eliminada correctamente");
+
+        }catch (\Exception $e){
+
+            DB::connection('client')->rollBack();
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
+
+    public function getPriorities (Request $request)
+    {
+
+        try{
+            $res = $this->service->getStatus();
+
+            if(!empty($res) && !is_null($res)){
+                return apiSuccess($res);
+            }else{
+                return apiSuccess(null, "No hay data disponible");
+            }
+
+        }catch (\Exception $e){
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
+
 }
