@@ -86,14 +86,18 @@ class TicketsServices
         return $ticketType;
     }
 
-    public function getTicketsType()
+    public function getTicketsType($search)
     {
         $ticketType = DB::connection('client')
             ->table('public.tickets_type')
-            ->where('status', true)
-            ->get();
+            ->where('status', true);
 
-        return $ticketType;
+        if($search)
+        {
+            $ticketType->where('name', 'like', '%' . $search . '%');
+        }
+
+        return $ticketType->get();
     }
 
     public function insertOrigin($data)

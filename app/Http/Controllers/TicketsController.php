@@ -198,9 +198,10 @@ class TicketsController extends Controller
 
     public function getTicketsType (Request $request)
     {
+        $search = isset($request['search']) ? $request['search']: '';
 
         try{
-            $res = $this->service->getTicketsType();
+            $res = $this->service->getTicketsType($search);
 
             if(!empty($res) && !is_null($res)){
                 return apiSuccess($res);

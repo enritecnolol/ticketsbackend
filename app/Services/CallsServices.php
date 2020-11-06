@@ -134,6 +134,6 @@ class CallsServices
             $assistanceType->where('name', 'like', '%' . $search . '%');
         }
 
-        return $assistanceType ->get();
+        return $assistanceType->get();
     }
 }
