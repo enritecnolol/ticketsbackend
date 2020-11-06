@@ -51,12 +51,12 @@ class CallsController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'id'=> 'required',
-            'name'=> 'required',
             'client_id'=> 'required',
             'phone_number'=> 'required',
             'sender'=> 'required',
             'motive'=> 'required',
             'duration'=> 'required',
+            'assistance_types'=> 'required',
         ]);
 
         if($validator->fails()){
