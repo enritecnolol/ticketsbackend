@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use App\Origin;
+use App\Priority;
 use App\Ticket;
 use App\TicketsStatus;
 use App\TicketType;
@@ -257,5 +258,45 @@ class TicketsServices
             ->get()
         ;
         return $traces;
+    }
+
+    public function insertPriorities($data)
+    {
+        return Priority::create([
+            'name' => strtoupper($data['name']),
+            'status' => true
+        ]);
+    }
+
+    public function editPriorities($data)
+    {
+        $priority = Priority::find($data['id']);
+        $priority->name = $data['name'];
+        $priority->update();
+
+        return $priority;
+    }
+
+    public function deletePriorities($data)
+    {
+        $priority = Priority::find($data['id']);
+        $priority->status = false;
+        $priority->update();
+
+        return $priority;
+    }
+
+    public function getPriorities($search)
+    {
+        $priorities = DB::connection('client')
+            ->table('public.priorities')
+            ->where('status', true);
+
+        if($search)
+        {
+            $priorities->where('name', 'like', '%' . $search . '%');
+        }
+
+        return $priorities->get();
     }
 }

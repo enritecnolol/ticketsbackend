@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Origin;
+use App\Priority;
 use App\Services\TicketsServices;
 use App\TicketsStatus;
 use App\TicketType;
@@ -518,16 +519,16 @@ class TicketsController extends Controller
             return response()->json($validator->getMessageBag(), 400);
         }
 
-        if(TicketsStatus::where('name', strtoupper($request->name))->first() != null){
-            return apiError(null, "Estado de ticket ya existe", 201);
+        if(Priority::where('name', strtoupper($request->name))->first() != null){
+            return apiError(null, "Prioridad ya existe", 201);
         }
 
         DB::connection('client')->beginTransaction();
         try{
 
-            $this->service->insertStatus($request);
+            $this->service->insertPriorities($request);
             DB::connection('client')->commit();
-            return apiSuccess(null, "Estado de ticket insertado correctamente");
+            return apiSuccess(null, "Prioridad insertado correctamente");
 
         }catch (\Exception $e){
 
@@ -546,16 +547,16 @@ class TicketsController extends Controller
             return response()->json($validator->getMessageBag(), 400);
         }
 
-        if(TicketsStatus::where('name', strtoupper($request->name))->first() != null){
-            return apiError(null, "Esta categoria ya existe", 201);
+        if(Priority::where('name', strtoupper($request->name))->first() != null){
+            return apiError(null, "Prioridad ya existe", 201);
         }
 
         DB::connection('client')->beginTransaction();
         try{
 
-            $this->service->editStatus($request);
+            $this->service->editPriorities($request);
             DB::connection('client')->commit();
-            return apiSuccess(null, "Estado de ticket editado correctamente");
+            return apiSuccess(null, "Prioridad editado correctamente");
 
         }catch (\Exception $e){
 
@@ -577,9 +578,9 @@ class TicketsController extends Controller
         DB::connection('client')->beginTransaction();
         try{
 
-            $this->service->deleteStatus($request);
+            $this->service->deletePriorities($request);
             DB::connection('client')->commit();
-            return apiSuccess(null, "Estado de ticket Eliminada correctamente");
+            return apiSuccess(null, "Prioridad Eliminada correctamente");
 
         }catch (\Exception $e){
 
@@ -592,7 +593,7 @@ class TicketsController extends Controller
     {
 
         try{
-            $res = $this->service->getStatus();
+            $res = $this->service->getPriorities();
 
             if(!empty($res) && !is_null($res)){
                 return apiSuccess($res);

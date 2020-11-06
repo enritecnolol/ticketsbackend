@@ -16,6 +16,7 @@ class CreateTablePriorities extends Migration
         Schema::connection('client')->create('priorities', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateTablePriorities extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('priorities');
+        Schema::connection('client')->dropIfExists('priorities');
     }
 }
