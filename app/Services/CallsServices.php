@@ -66,7 +66,7 @@ class CallsServices
         foreach ($data['assistance_types'] as $assistance_type_id)
         {
             AssistanceCalls::create([
-                'call_id' => $data['id'],
+                'call_id' => $call->id,
                 'assistance_type_id' => $assistance_type_id
             ]);
         }
