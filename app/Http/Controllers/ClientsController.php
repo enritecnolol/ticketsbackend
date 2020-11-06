@@ -15,7 +15,7 @@ class ClientsController extends Controller
     }
     public function getClients(Request $request)
     {
-        $size = isset($request['size']) ? $request['companies']: '10';
+        $size = isset($request['size']) ? $request['size']: '10';
         $search = isset($request['search']) ? $request['search']: '';
 
         try{
