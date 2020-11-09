@@ -33,4 +33,21 @@ class TechniciansController extends Controller
             return apiError(null, $e->getMessage(), $e->getCode());
         }
     }
+
+    public function TechniciansForSelect(Request $request)
+    {
+
+        try{
+            $res = $this->service->getTechniciansForSelect();
+
+            if(!empty($res) && !is_null($res)){
+                return apiSuccess($res);
+            }else{
+                return apiSuccess(null, "No hay data disponible");
+            }
+
+        }catch (\Exception $e){
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
 }

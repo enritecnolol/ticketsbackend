@@ -30,4 +30,18 @@ class TechniciansServices
 
         return $technicians;
     }
+
+    public function getTechniciansForSelect()
+    {
+        $technicians = DB::connection('client')
+            ->table('public.nom_empleado')
+            ->select('cia_codigo',
+                'emp_cod',
+                'emp_apellidos',
+                'emp_nombres'
+            )
+            ->get();
+
+        return $technicians;
+    }
 }

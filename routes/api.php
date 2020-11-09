@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::delete('assistanceType', 'CallsController@deleteAssistanceType');
     /*===============================\Tecnicos\=======================================*/
     Route::get('technicians', 'TechniciansController@TechniciansPaginate');
+    Route::get('technicians/select', 'TechniciansController@TechniciansForSelect');
     /*===============================\Estados de tickets\=======================================*/
     Route::get('statuses', 'TicketsController@getTicketsStatus');
     Route::post('status', 'TicketsController@storeTicketsStatus');
@@ -60,6 +61,11 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::post('ticket', 'TicketsController@storeTicket');
     Route::put('ticket', 'TicketsController@editTicket');
     Route::delete('ticket', 'TicketsController@deleteTicket');
+    /*===============================\Prioridades\=======================================*/
+    Route::get('priorities', 'TicketsController@getPriorities');
+    Route::post('priority', 'TicketsController@storePriorities');
+    Route::put('priority', 'TicketsController@editPriorities');
+    Route::delete('priority', 'TicketsController@deletePriorities');
     /*===============================\Seguiminetos\=======================================*/
     Route::get('tracesEntries', 'TicketsController@getTraceEntriesOfTicket');
     Route::post('traceEntries', 'TicketsController@storeTraceEntries');
