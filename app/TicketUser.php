@@ -9,5 +9,5 @@ class TicketUser extends Model
     protected $table = 'public.tickets_user';
     protected $connection = 'client';
 
-    protected $fillable = ['user_id', 'tickets_id'];
+    protected $fillable = ['user_id', 'ticket_id'];
 }
