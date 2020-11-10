@@ -162,7 +162,7 @@ class TicketsServices
         {
             TicketUser::create([
                 'user_id' => $assigned_to,
-                'tickets_id' => $ticket->id
+                'ticket_id' => $ticket->id
             ]);
         }
 
@@ -191,7 +191,7 @@ class TicketsServices
         {
             TicketUser::create([
                 'user_id' => $assigned_to,
-                'tickets_id' => $data['id']
+                'ticket_id' => $data['id']
             ]);
         }
 
