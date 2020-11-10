@@ -221,6 +221,15 @@ class TicketsServices
         return $tickets->paginate($size);
     }
 
+    public function getTicketUsers($ticket_id)
+    {
+        $tickets = DB::connection('client')
+            ->table('public.tickets_user')
+            ->where('ticket_id', $ticket_id);
+
+        return $tickets->get();
+    }
+
     public function insertTraceEntries($data)
     {
         $trace_id = Trace::where('ticket_id', $data['ticket_id'])->first();

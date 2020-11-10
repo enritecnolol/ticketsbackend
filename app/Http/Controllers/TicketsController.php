@@ -417,6 +417,24 @@ class TicketsController extends Controller
         }
     }
 
+    public function getTicketUser (Request $request)
+    {
+        $ticket_id = isset($request['ticket_id']) ? $request['ticket_id']: '';
+
+        try{
+            $res = $this->service->getTicketUsers($ticket_id);
+
+            if(!empty($res) && !is_null($res)){
+                return apiSuccess($res);
+            }else{
+                return apiSuccess(null, "No hay data disponible");
+            }
+
+        }catch (\Exception $e){
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
+
     public function storeTraceEntries (Request $request)
     {
         $validator = Validator::make($request->all(), [
