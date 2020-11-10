@@ -286,16 +286,11 @@ class TicketsServices
         return $priority;
     }
 
-    public function getPriorities($search)
+    public function getPriorities()
     {
         $priorities = DB::connection('client')
             ->table('public.priorities')
             ->where('status', true);
-
-        if($search)
-        {
-            $priorities->where('name', 'like', '%' . $search . '%');
-        }
 
         return $priorities->get();
     }
