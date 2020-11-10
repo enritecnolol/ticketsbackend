@@ -350,7 +350,6 @@ class TicketsController extends Controller
             'status_id'=> 'required',
             'client_id'=> 'required',
             'tickets_type_id'=> 'required',
-            'company_id'=> 'required',
             'priority_id'=> 'required',
             'title'=> 'required',
             'note'=> 'required',

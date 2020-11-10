@@ -149,7 +149,7 @@ class TicketsServices
             'client_id' => $data['client_id'],
             'user_id' => Auth::id(),
             'tickets_type_id' => $data['tickets_type_id'],
-            'company_id' => $data['company_id'],
+            'company_id' => '0001',
             'priority_id' => $data['priority_id'],
             'title' => $data['title'],
             'note' => $data['note'],
