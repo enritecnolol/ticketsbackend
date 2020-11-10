@@ -146,7 +146,7 @@ class TicketsServices
     {
         $ticket = Ticket::create([
             'status_id' => $data['status_id'],
-            'client_id' => $data['client_id']['clie_codigo'],
+            'client_id' => $data['client_id'],
             'user_id' => Auth::id(),
             'tickets_type_id' => $data['tickets_type_id'],
             'company_id' => '0001',
@@ -173,7 +173,7 @@ class TicketsServices
     {
         $ticket = Ticket::find($data['id']);
         $ticket->status_id = $data['status_id'];
-        $ticket->client_id = $data['client_id']['clie_codigo'];
+        $ticket->client_id = $data['client_id'];
         $ticket->tickets_type_id = $data['tickets_type_id'];
         $ticket->company_id = $data['company_id'];
         $ticket->priority_id = $data['priority_id'];
