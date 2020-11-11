@@ -228,8 +228,8 @@ class TicketsServices
             ->table('public.tickets_user')
             ->select('user_id')
             ->where('ticket_id', $id)->get();
-//        $trace_id = Trace::where('ticket_id', $data['ticket_id'])->first();
-//        $tickets->trace_entries = TraceEntries::where('trace_id',$trace_id);
+        $trace_id = Trace::where('ticket_id', $id)->first();
+        $tickets->trace_entries = TraceEntries::where('trace_id',$trace_id);
         $tickets->client_name = DB::connection('client')
             ->table('public.cxc_clientes')
             ->select('clie_nombre')
