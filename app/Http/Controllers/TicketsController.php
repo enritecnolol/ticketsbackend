@@ -419,10 +419,10 @@ class TicketsController extends Controller
 
     public function getTicketDetail (Request $request)
     {
-        $size = isset($request['id']) ? $request['id']: '';
+        $id = isset($request['id']) ? $request['id']: '';
 
         try{
-            $res = $this->service->getTickets($id);
+            $res = $this->service->getTicketDetail($id);
 
             if(!empty($res) && !is_null($res)){
                 return apiSuccess($res);
