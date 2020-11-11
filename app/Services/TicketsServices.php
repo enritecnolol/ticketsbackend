@@ -224,14 +224,14 @@ class TicketsServices
     public function getTicketDetail($id)
     {
         $tickets = Ticket::find($id);
-        $tickets->assigned_to = DB::connection('client')
-            ->table('public.tickets_user')
-            ->where('ticket_id', $id)->get();
-        $trace_id = Trace::where('ticket_id', $data['ticket_id'])->first();
-        $tickets->trace_entries = TraceEntries::where('trace_id',$trace_id);
-        $tickets->client_name = DB::connection('client')
-            ->table('public.cxc_clientes')
-            ->where('clie_codigo', $tickets->client_id)->first();
+//        $tickets->assigned_to = DB::connection('client')
+//            ->table('public.tickets_user')
+//            ->where('ticket_id', $id)->get();
+//        $trace_id = Trace::where('ticket_id', $data['ticket_id'])->first();
+//        $tickets->trace_entries = TraceEntries::where('trace_id',$trace_id);
+//        $tickets->client_name = DB::connection('client')
+//            ->table('public.cxc_clientes')
+//            ->where('clie_codigo', $tickets->client_id)->first();
 
         return $tickets;
     }
