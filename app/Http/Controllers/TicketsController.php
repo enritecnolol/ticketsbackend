@@ -417,6 +417,24 @@ class TicketsController extends Controller
         }
     }
 
+    public function getTicketDetail (Request $request)
+    {
+        $size = isset($request['id']) ? $request['id']: '';
+
+        try{
+            $res = $this->service->getTickets($id);
+
+            if(!empty($res) && !is_null($res)){
+                return apiSuccess($res);
+            }else{
+                return apiSuccess(null, "No hay data disponible");
+            }
+
+        }catch (\Exception $e){
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
+
     public function getTicketUser (Request $request)
     {
         $ticket_id = isset($request['ticket_id']) ? $request['ticket_id']: '';
