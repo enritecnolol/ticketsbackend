@@ -232,6 +232,7 @@ class TicketsServices
 //        $tickets->trace_entries = TraceEntries::where('trace_id',$trace_id);
         $tickets->client_name = DB::connection('client')
             ->table('public.cxc_clientes')
+            ->select('clie_nombre')
             ->where('clie_codigo', $tickets->client_id)->first();
 
         return $tickets;
