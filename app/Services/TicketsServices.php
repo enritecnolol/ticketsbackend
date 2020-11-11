@@ -224,9 +224,9 @@ class TicketsServices
     public function getTicketDetail($id)
     {
         $tickets = Ticket::find($id);
-//        $tickets->assigned_to = DB::connection('client')
-//            ->table('public.tickets_user')
-//            ->where('ticket_id', $id)->get();
+        $tickets->assigned_to = DB::connection('client')
+            ->table('public.tickets_user')
+            ->where('ticket_id', $id)->get();
 //        $trace_id = Trace::where('ticket_id', $data['ticket_id'])->first();
 //        $tickets->trace_entries = TraceEntries::where('trace_id',$trace_id);
 //        $tickets->client_name = DB::connection('client')
