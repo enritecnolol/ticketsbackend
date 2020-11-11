@@ -73,6 +73,14 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::post('traceEntries', 'TicketsController@storeTraceEntries');
     Route::put('traceEntries', 'TicketsController@editTraceEntries');
     Route::delete('traceEntries', 'TicketsController@deleteTraceEntries');
+    /*===============================\tipo de proyectoss\=======================================*/
+    Route::get('projectsTypes', 'ProjectsController@getProjectsTypes');
+    Route::post('projectsType', 'ProjectsController@storeProjectsType');
+    Route::put('projectsType', 'ProjectsController@editProjectsType');
+    /*===============================\Estados de proyectos\=======================================*/
+    Route::get('projectsStatuses', 'ProjectsController@getProjectsStatus');
+    Route::post('projectsStatus', 'ProjectsController@storeProjectsStatus');
+    Route::put('projectsStatus', 'ProjectsController@editProjectsStatus');
 
     /*===============================/Company\=======================================*/
     Route::post('company', 'CompaniesController@store');
