@@ -227,7 +227,7 @@ class TicketsServices
 
         $tickets->assigned_to = DB::connection('client')
             ->table(DB::raw('public.tickets_user as tu'))
-            ->select('tu.user_id', 'ne.emp_apellidos', 'ne.emp_nombres')
+            ->select('tu.user_id', 'ne.emp_nom')
             ->where('ticket_id', $id)
             ->join(DB::raw('public.nom_empleado as ne'), 'tu.user_id', '=', 'ne.emp_cod')
             ->get();
@@ -236,10 +236,14 @@ class TicketsServices
 
         $tickets->trace_entries = TraceEntries::where('trace_id',$trace_id);
 
-        $tickets->client_name = DB::connection('client')
+        $tickets->client_info = DB::connection('client')
             ->table('public.cxc_clientes')
             ->select('clie_nombre', 'clie_telefonos','clie_contacto', 'clie_direccion', 'clie_ciudad')
             ->where('clie_codigo', $tickets->client_id)->first();
+
+        $tickets->status_info = TicketsStatus::find($tickets->status_id);
+        $tickets->tickets_type_info = TicketType::find($tickets->tickets_type_id);
+        $tickets->priority_info = Priority::find($tickets->priority_id);
 
         return $tickets;
     }
