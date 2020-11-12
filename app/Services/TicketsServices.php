@@ -290,6 +290,7 @@ class TicketsServices
     {
         return Priority::create([
             'name' => strtoupper($data['name']),
+            'color' => $data['color'],
             'status' => true
         ]);
     }
@@ -298,6 +299,7 @@ class TicketsServices
     {
         $priority = Priority::find($data['id']);
         $priority->name = $data['name'];
+        $priority->color = $data['color'];
         $priority->update();
 
         return $priority;

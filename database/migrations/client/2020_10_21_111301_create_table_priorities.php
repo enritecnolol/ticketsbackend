@@ -16,6 +16,7 @@ class CreateTablePriorities extends Migration
         Schema::connection('client')->create('priorities', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('color');
             $table->boolean('status');
             $table->timestamps();
         });

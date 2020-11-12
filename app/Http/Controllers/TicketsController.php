@@ -546,7 +546,8 @@ class TicketsController extends Controller
     public function storePriorities (Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name'=> 'required'
+            'name'=> 'required',
+            'color' => 'required'
         ]);
 
         if($validator->fails()){
@@ -574,7 +575,8 @@ class TicketsController extends Controller
     public function editPriorities (Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name'=> 'required'
+            'name'=> 'required',
+            'color' => 'required'
         ]);
 
         if($validator->fails()){
