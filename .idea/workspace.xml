@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2b46cd03-3306-4b66-a9ef-27720459323e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TicketsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TicketsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/TicketsServices.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/TicketsServices.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/client/2020_10_21_111301_create_table_priorities.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/client/2020_10_21_111301_create_table_priorities.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Priority.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Priority.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,7 +236,8 @@
       <workItem from="1605033312971" duration="1014000" />
       <workItem from="1605038649144" duration="1020000" />
       <workItem from="1605101715824" duration="12600000" />
-      <workItem from="1605186747770" duration="4116000" />
+      <workItem from="1605186747770" duration="6739000" />
+      <workItem from="1605206925382" duration="148000" />
     </task>
     <servers />
   </component>
