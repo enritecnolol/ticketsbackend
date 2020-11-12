@@ -228,5 +228,48 @@ class ProjectsController extends Controller
             return apiError(null, $e->getMessage(), $e->getCode());
         }
     }
+    public function deleteProject (Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id'=> 'required'
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->getMessageBag(), 400);
+        }
+
+        DB::connection('client')->beginTransaction();
+        try{
+
+            $res = $this->service->deleteProject($request);
+            DB::connection('client')->commit();
+
+            return apiSuccess($res, "El Proyecto fue eliminado correctamente");
+
+        }catch (\Exception $e){
+            DB::connection('client')->rollBack();
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
+
+    public function getProjects(Request $request)
+    {
+        $search = isset($request['search']) ? $request['search']: '';
+        $filter = isset($request['filter']) ? $request['filter']: '';
+        $size = isset($request['size']) ? $request['size']: '';
+
+        try{
+            $res = $this->service->getProjects($search, $filter, $size);
+
+            if(!empty($res) && !is_null($res)){
+                return apiSuccess($res);
+            }else{
+                return apiSuccess(null, "No hay data disponible");
+            }
+
+        }catch (\Exception $e){
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
 
 }
