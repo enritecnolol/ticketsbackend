@@ -224,12 +224,18 @@ class TicketsServices
     public function getTicketDetail($id)
     {
         $tickets = Ticket::find($id);
+
         $tickets->assigned_to = DB::connection('client')
-            ->table('public.tickets_user')
-            ->select('user_id')
-            ->where('ticket_id', $id)->get();
+            ->table(DB::raw('public.tickets_user as tu'))
+            ->select('tu.user_id', 'ne.emp_apellidos', 'ne.emp_nombres')
+            ->where('ticket_id', $id)
+            ->join(DB::raw('public.nom_empleado as ne'), 'tu.user_id', '=', 'ne.emp_cod')
+            ->get();
+
         $trace_id = Trace::where('ticket_id', $id)->first();
+
         $tickets->trace_entries = TraceEntries::where('trace_id',$trace_id);
+
         $tickets->client_name = DB::connection('client')
             ->table('public.cxc_clientes')
             ->select('clie_nombre', 'clie_telefonos','clie_contacto', 'clie_direccion', 'clie_ciudad')
