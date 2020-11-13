@@ -15,6 +15,9 @@ class CreateTableFiles extends Migration
     {
         Schema::connection('client')->create('files', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('type');
+            $table->integer('ticket_id');
             $table->timestamps();
         });
     }
