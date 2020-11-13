@@ -243,7 +243,7 @@ class TicketsServices
 
         $tickets->status_info = TicketsStatus::find($tickets->status_id);
         $tickets->tickets_type_info = TicketType::find($tickets->tickets_type_id);
-        $tickets->priority_info = Priority::find($tickets->priority_id);
+        $tickets->priority_info = Priority::find($tickets->priority_idora);
 
         return $tickets;
     }
