@@ -210,13 +210,16 @@ class TicketsServices
     public function getTickets($search, $size)
     {
         $tickets = DB::connection('client')
-            ->table('public.tickets')
-            ->where('status', true);
+            ->table(DB::raw('public.tickets as ticket'))
+            ->where('ticket.status', true)
+            ->join(DB::raw('public.priorities as p'),'ticket.priority_id','=','p.id');
 
         if($search)
         {
             $tickets->where('title', 'like', '%' . $search . '%');
         }
+
+        $tickets->select('ticket.*', 'p.name as priority_name', 'p.color as priority_color');
 
         return $tickets->paginate($size);
     }
@@ -243,7 +246,7 @@ class TicketsServices
 
         $tickets->status_info = TicketsStatus::find($tickets->status_id);
         $tickets->tickets_type_info = TicketType::find($tickets->tickets_type_id);
-        $tickets->priority_info = Priority::find($tickets->priority_idora);
+        $tickets->priority_info = Priority::find($tickets->priority_id);
 
         return $tickets;
     }
