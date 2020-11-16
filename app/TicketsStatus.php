@@ -9,5 +9,5 @@ class TicketsStatus extends Model
     protected $table = 'public.statuses';
     protected $connection = 'client';
 
-    protected $fillable = ['company_id', 'name'];
+    protected $fillable = ['company_id', 'name', 'status'];
 }
