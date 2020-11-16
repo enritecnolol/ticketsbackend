@@ -23,7 +23,8 @@ class TicketsServices
     {
         $status = TicketsStatus::create([
             'name' => strtoupper($data['name']),
-            'company_id' => $data['company_id']
+            'company_id' => $data['company_id'],
+            'status' => true
         ]);
 
         return $status;
