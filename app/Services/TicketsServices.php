@@ -284,6 +284,12 @@ class TicketsServices
         $tickets->status_info = TicketsStatus::find($tickets->status_id);
         $tickets->tickets_type_info = TicketType::find($tickets->tickets_type_id);
         $tickets->priority_info = Priority::find($tickets->priority_id);
+        $tickets->project_tickets = DB::connection('client')
+            ->table(DB::raw('public.project_tickets as pt'))
+            ->where('pt.ticket_id', $id)
+            ->join(DB::raw('public.project as p'),'pt.project_id','=','p.id')
+            ->select('pt.*', 'p.title', 'p.description')
+            ->get();
 
         return $tickets;
     }
