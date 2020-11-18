@@ -158,17 +158,17 @@ class TicketsServices
             'status' => true
         ]);
 
-        $file = $data->file('img');
+//        $file = $data->file('img');
+//
+//        if ($data->hasFile('img')) {
+//            $file->storeAs('/', $file->getClientOriginalName());
+//            File::create([
+//                'name' => $data->hasFile('img') ? $file->getClientOriginalName() : 'default.jpg',
+//                'type' => $file->extension(),
+//                'ticket_id' => $ticket->id
+//            ]);
+//        }
 
-        if ($data->hasFile('img')) {
-            $file->storeAs('/', $file->getClientOriginalName());
-        }
-
-        File::create([
-           'name' => $data->hasFile('img') ? $file->getClientOriginalName() : 'default.jpg',
-            'type' => $file->extension(),
-            'ticket_id' => $ticket->id
-        ]);
 
         Trace::create(['ticket_id' => $ticket->id]);
 
