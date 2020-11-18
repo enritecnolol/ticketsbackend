@@ -321,7 +321,8 @@ class TicketsController extends Controller
             'priority_id'=> 'required',
             'title'=> 'required',
             'note'=> 'required',
-            'assigned_to'=> 'required'
+            'assigned_to'=> 'required',
+            'to_projects' => 'required'
         ]);
 
         if($validator->fails()){

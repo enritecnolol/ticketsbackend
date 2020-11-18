@@ -7,6 +7,7 @@ namespace App\Services;
 use App\File;
 use App\Origin;
 use App\Priority;
+use App\ProjectTicket;
 use App\Ticket;
 use App\TicketsStatus;
 use App\TicketType;
@@ -180,6 +181,14 @@ class TicketsServices
             ]);
         }
 
+        foreach ($data['to_projects'] as $project)
+        {
+            ProjectTicket::create([
+                'project_id' => $project,
+                'ticket_id' => $ticket->id
+            ]);
+        }
+
         return $ticket;
     }
 
@@ -208,7 +217,18 @@ class TicketsServices
                 'ticket_id' => $data['id']
             ]);
         }
+        DB::connection('client')
+            ->table('public.project_tickets')
+            ->where('ticket_id', $data['id'])
+            ->delete();
 
+        foreach ($data['to_projects'] as $project)
+        {
+            ProjectTicket::create([
+                'project_id' => $project,
+                'ticket_id' => $ticket->id
+            ]);
+        }
         return $ticket;
     }
 
