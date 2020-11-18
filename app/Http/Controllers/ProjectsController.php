@@ -290,4 +290,22 @@ class ProjectsController extends Controller
         }
     }
 
+    public function getProjectUsers(Request $request)
+    {
+        $id = isset($request['id']) ? $request['id']: '';
+
+        try{
+            $res = $this->service->getProjectUsers($id);
+
+            if(!empty($res) && !is_null($res)){
+                return apiSuccess($res);
+            }else{
+                return apiSuccess(null, "No hay data disponible");
+            }
+
+        }catch (\Exception $e){
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
+
 }

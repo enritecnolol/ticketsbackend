@@ -167,4 +167,15 @@ class ProjectsServices
         return $project;
 
     }
+
+    public function getProjectUsers($id)
+    {
+        $project = DB::connection('client')
+            ->table(DB::raw('public.projects_user as pu'))
+            ->where('pu.project_id', $id)
+            ->join(DB::raw('public.nom_empleado as ne'), 'pu.user_id', '=', 'ne.emp_cod')
+            ->select('pu.*', 'ne.emp_nom');
+
+        return $project->get();
+    }
 }
