@@ -178,4 +178,15 @@ class ProjectsServices
 
         return $project->get();
     }
+
+    public function getProjectClients($id)
+    {
+        $project = DB::connection('client')
+            ->table(DB::raw('public.projects_client as pc'))
+            ->where('pc.project_id', $id)
+            ->join(DB::raw('public.cxc_clientes as cc'), 'pc.client_id', '=', 'cc.clie_codigo')
+            ->select('pc.*', 'cc.clie_nombre');
+
+        return $project->get();
+    }
 }
