@@ -86,6 +86,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::post('project', 'ProjectsController@storeProject');
     Route::put('project', 'ProjectsController@editProject');
     Route::delete('project', 'ProjectsController@deleteProject');
+    Route::get('project/detail', 'ProjectsController@getProjectDetail');
 
     /*===============================/Company\=======================================*/
     Route::post('company', 'CompaniesController@store');

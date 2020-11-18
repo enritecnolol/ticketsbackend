@@ -136,7 +136,7 @@ class ProjectsServices
 
     }
 
-    public function getProjects($search, $filter, $size){
+    public function getProjects($search, $filter, $size = 10){
 
         $projects = DB::connection('client')
             ->table('public.projects')
@@ -147,6 +147,24 @@ class ProjectsServices
 
 
         return $projects->paginate($size);
+
+    }
+    public function getProjectDetail($id){
+
+        $project = Project::find($id);
+        $project->project_type_detail = ProjectsType::find($project->project_type_id);
+        $project->project_status_detail = ProjectsStatus::find($project->project_status_id);
+        $project->assigned_to = DB::connection('client')
+            ->table(DB::raw('public.projects_user as pu'))
+            ->where('pu.project_id', $id)
+            ->join(DB::raw('public.nom_empleado as ne'), 'pu.user_id', '=', 'ne.emp_cod')
+            ->select('pu.*', 'ne.emp_nom')->get();
+        $project->customers = DB::connection('client')
+            ->table(DB::raw('public.projects_client as pc'))
+            ->where('pc.project_id', $id)
+            ->join(DB::raw('public.cxc_clientes as cc'), 'pc.client_id', '=', 'cc.clie_codigo')
+            ->select('pc.*', 'cc.clie_nombre')->get();
+        return $project;
 
     }
 }
