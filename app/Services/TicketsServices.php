@@ -287,7 +287,7 @@ class TicketsServices
         $tickets->project_tickets = DB::connection('client')
             ->table(DB::raw('public.project_tickets as pt'))
             ->where('pt.ticket_id', $id)
-            ->join(DB::raw('public.project as p'),'pt.project_id','=','p.id')
+            ->join(DB::raw('public.projects as p'),'pt.project_id','=','p.id')
             ->select('pt.*', 'p.title', 'p.description')
             ->get();
 
