@@ -153,6 +153,15 @@ class ProjectsServices
         return $projects->paginate($size);
 
     }
+
+    public function getProjectsSelect(){
+
+        $projects = DB::connection('client')
+            ->table(DB::raw('public.projects as p'))
+            ->where('p.status', true);
+        return $projects->get();
+
+    }
     public function getProjectDetail($id){
 
         $project = Project::find($id);

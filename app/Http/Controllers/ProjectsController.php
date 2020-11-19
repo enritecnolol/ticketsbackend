@@ -272,6 +272,23 @@ class ProjectsController extends Controller
         }
     }
 
+    public function getProjectsSelect(Request $request)
+    {
+
+        try{
+            $res = $this->service->getProjectsSelect();
+
+            if(!empty($res) && !is_null($res)){
+                return apiSuccess($res);
+            }else{
+                return apiSuccess(null, "No hay data disponible");
+            }
+
+        }catch (\Exception $e){
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
+
     public function getProjectDetail(Request $request)
     {
         $id = isset($request['id']) ? $request['id']: '';
