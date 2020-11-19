@@ -303,6 +303,15 @@ class TicketsServices
         return $tickets->get();
     }
 
+    public function getTicketProjects($id)
+    {
+        $projects = DB::connection('client')
+            ->table('public.project_tickets')
+            ->where('ticket_id', $id);
+
+        return $projects->get();
+    }
+
     public function insertTraceEntries($data)
     {
         $trace_id = Trace::where('ticket_id', $data['ticket_id'])->first();

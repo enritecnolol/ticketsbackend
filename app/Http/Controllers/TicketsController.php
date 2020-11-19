@@ -453,6 +453,24 @@ class TicketsController extends Controller
         }
     }
 
+    public function getTicketProjects (Request $request)
+    {
+        $id = isset($request['id']) ? $request['id']: '';
+
+        try{
+            $res = $this->service->getTicketProjects($id);
+
+            if(!empty($res) && !is_null($res)){
+                return apiSuccess($res);
+            }else{
+                return apiSuccess(null, "No hay data disponible");
+            }
+
+        }catch (\Exception $e){
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
+
     public function storeTraceEntries (Request $request)
     {
         $validator = Validator::make($request->all(), [

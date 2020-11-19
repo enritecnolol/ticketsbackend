@@ -61,6 +61,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::post('ticket', 'TicketsController@storeTicket');
     Route::put('ticket', 'TicketsController@editTicket');
     Route::get('ticket/user', 'TicketsController@getTicketUser');
+    Route::get('ticket/projects', 'TicketsController@getTicketProjects');
     Route::get('ticket/detail', 'TicketsController@getTicketDetail');
     Route::delete('ticket', 'TicketsController@deleteTicket');
     /*===============================\Prioridades\=======================================*/
