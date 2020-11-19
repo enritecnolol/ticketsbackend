@@ -218,7 +218,7 @@ class ProjectsController extends Controller
         DB::connection('client')->beginTransaction();
         try{
 
-            $res = $this->service->storeProject($request);
+            $res = $this->service->editProject($request);
             DB::connection('client')->commit();
 
             return apiSuccess($res, "El Proyecto fue editado correctamente");
