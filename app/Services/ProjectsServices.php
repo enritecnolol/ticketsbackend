@@ -139,12 +139,16 @@ class ProjectsServices
     public function getProjects($search, $filter, $size = 10){
 
         $projects = DB::connection('client')
-            ->table('public.projects')
-            ->where('status', true);
+            ->table(DB::raw('public.projects as p'))
+            ->where('p.status', true)
+            ->join(DB::raw('public.projects_statuses as ps'), 'p.project_status_id', '=', 'ps.id')
+            ->join(DB::raw('public.projects_types as py'), 'p.project_type_id', '=', 'py.id');
+
 
         if($search)
             $projects->where('title', 'like', '%' . $search . '%');
 
+        $projects->select('p.*', 'ps.name as status_name', 'py.name as type_name');
 
         return $projects->paginate($size);
 
