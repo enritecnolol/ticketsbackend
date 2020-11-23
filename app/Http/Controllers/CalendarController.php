@@ -97,10 +97,10 @@ class CalendarController extends Controller
 
     public function getCalendarEvents(Request $request)
     {
-        $moth = isset($request['moth']) ? $request['moth']: '';
+        $month = isset($request['month']) ? $request['month']: '';
 
         try{
-            $res = $this->service->getEvents($moth);
+            $res = $this->service->getEvents($month);
 
             if(!empty($res) && !is_null($res)){
                 return apiSuccess($res);

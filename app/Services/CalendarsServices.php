@@ -36,11 +36,11 @@ class CalendarsServices
         $calendar->delete();
     }
 
-    public function getEvents($moth)
+    public function getEvents($month)
     {
         return DB::connection('client')
             ->table('public.calendar_events')
-            ->where(DB::raw('EXTRACT(MONTH FROM start)'), $moth)
-            ->where(DB::raw('EXTRACT(MONTH FROM end_date)'), $moth)->get();
+            ->where(DB::raw('EXTRACT(MONTH FROM start)'), $month)
+            ->where(DB::raw('EXTRACT(MONTH FROM end_date)'), $month)->get();
     }
 }
