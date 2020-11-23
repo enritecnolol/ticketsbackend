@@ -17,7 +17,7 @@ class CreateTableCalendarEvents extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->date('start');
-            $table->date('end');
+            $table->date('end_date');
             $table->string('classname');
             $table->timestamps();
         });

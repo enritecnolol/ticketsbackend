@@ -40,7 +40,7 @@ class CalendarsServices
     {
         return DB::connection('client')
             ->table('public.calendar_events')
-            ->where(DB::raw('MONTH(start)'), $moth)
-            ->where(DB::raw('MONTH(end)'), $moth)->get();
+            ->where(DB::raw('EXTRACT(MONTH FROM start)'), $moth)
+            ->where(DB::raw('EXTRACT(MONTH FROM end_date)'), $moth)->get();
     }
 }
