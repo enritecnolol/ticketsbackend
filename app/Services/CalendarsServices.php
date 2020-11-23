@@ -14,7 +14,7 @@ class CalendarsServices
         $calendar = CalendarEvent::create([
             'title' => $data->title,
             'start' => $data->start,
-            'end' => $data->end,
+            'end' => $data->end_date,
             'classname' => $data->classname,
         ]);
         return $calendar;
@@ -24,7 +24,7 @@ class CalendarsServices
         $calendar = CalendarEvent::find($data['id']);
         $calendar->title = $data->title;
         $calendar->start = $data->start;
-        $calendar->end = $data->end;
+        $calendar->end = $data->end_date;
         $calendar->classname = $data->classname;
         $calendar->update();
         return $calendar;

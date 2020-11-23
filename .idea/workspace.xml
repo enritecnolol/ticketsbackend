@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b46cd03-3306-4b66-a9ef-27720459323e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/CalendarsServices.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/CalendarsServices.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/client/2020_11_23_151210_create_table_calendar_events.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/client/2020_11_23_151210_create_table_calendar_events.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,7 +243,7 @@
       <workItem from="1605557250019" duration="2900000" />
       <workItem from="1605615699367" duration="6060000" />
       <workItem from="1605704290681" duration="13447000" />
-      <workItem from="1605788975374" duration="9764000" />
+      <workItem from="1605788975374" duration="9837000" />
     </task>
     <servers />
   </component>
