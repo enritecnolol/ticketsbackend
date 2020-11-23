@@ -94,7 +94,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     /*===============================\Calendario\=======================================*/
     Route::get('calendarEvents', 'CalendarController@getCalendarEvents');
     Route::post('calendarEvent', 'CalendarController@storeCalendarEvents');
-    Route::put('calendarEvents', 'CalendarController@editCalendarEvents');
+    Route::put('calendarEvent', 'CalendarController@editCalendarEvents');
     Route::delete('calendarEvent', 'CalendarController@deleteCalendarEvents');
     /*===============================/Company\=======================================*/
     Route::post('company', 'CompaniesController@store');
