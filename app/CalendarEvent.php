@@ -9,5 +9,5 @@ class CalendarEvent extends Model
     protected $table = 'public.calendar_events';
     protected $connection = 'client';
 
-    protected $fillable = ['title', 'start', 'end', 'classname'];
+    protected $fillable = ['title', 'start', 'end_date', 'classname'];
 }
