@@ -32,7 +32,7 @@ class CalendarController extends Controller
         DB::connection('client')->beginTransaction();
         try{
 
-            $res = $this->service->insertCall($request);
+            $res = $this->service->insertEvent($request);
             DB::connection('client')->commit();
 
             return apiSuccess($res, "El evento ha insertada correctamente");
