@@ -21,7 +21,7 @@ class CalendarController extends Controller
         $validator = Validator::make($request->all(), [
             'title'=> 'required',
             'start'=> 'required',
-            'end'=> 'required',
+            'end_date'=> 'required',
             'classname'=> 'required',
         ]);
 
@@ -49,7 +49,7 @@ class CalendarController extends Controller
             'id'=> 'required',
             'title'=> 'required',
             'start'=> 'required',
-            'end'=> 'required',
+            'end_date'=> 'required',
             'classname'=> 'required',
         ]);
 
