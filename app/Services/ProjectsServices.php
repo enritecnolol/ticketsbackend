@@ -146,7 +146,11 @@ class ProjectsServices
 
 
         if($search)
-            $projects->where('title', 'like', '%' . $search . '%');
+            $projects->where('p.title', 'like', '%' . $search . '%');
+        if($filter['project_status'])
+            $projects->where('p.project_status_id', $filter['project_status']);
+        if($filter['project_type'])
+            $projects->where('p.project_type_id', $filter['project_type']);
 
         $projects->select('p.*', 'ps.name as status_name', 'py.name as type_name');
 
