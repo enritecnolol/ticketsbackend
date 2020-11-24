@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use App\CalendarEvent;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CalendarsServices
@@ -16,6 +17,7 @@ class CalendarsServices
             'start' => $data->start,
             'end_date' => $data->end_date,
             'classname' => $data->classname,
+            'user_id' => Auth::id(),
         ]);
         return $calendar;
     }
@@ -41,7 +43,7 @@ class CalendarsServices
         return DB::connection('client')
             ->table('public.calendar_events')
             ->where(DB::raw('EXTRACT(MONTH FROM start)'), $month)
-            ->select('id', 'title', 'start', DB::raw('end_date as end'), 'classname')
+            ->select('id', 'title', 'start', DB::raw('end_date as end'), 'classname', 'user_id')
             ->get();
     }
 }

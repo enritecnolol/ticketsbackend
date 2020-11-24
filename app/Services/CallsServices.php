@@ -83,16 +83,21 @@ class CallsServices
         return $call;
     }
 
-    public function getCalls($size, $search)
+    public function getCalls($size, $search, $filters)
     {
         $calls = DB::connection('client')
             ->table(DB::raw('public.calls call'))
             ->join(DB::raw('public.cxc_clientes client'), 'call.client_id', '=', 'client.clie_codigo')
             ->where('call.status', true)
-            ->select('call.*', 'client.clie_nombre')
-            ->paginate($size);
+            ->select('call.*', 'client.clie_nombre');
 
-        return $calls;
+        if($filters['date'])
+        {
+            $calls->whereBetween('date', $filters['date']);
+        }
+
+
+        return $calls->paginate($size);
     }
     #=============================\Assistance Type\================================================================
     public function insertAssistanceType($data)

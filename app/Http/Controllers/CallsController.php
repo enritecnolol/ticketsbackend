@@ -105,10 +105,11 @@ class CallsController extends Controller
     {
         $size = isset($request['size']) ? $request['size']: '10';
         $search = isset($request['search']) ? $request['search']: '';
+        $filters = isset($request['filters']) ? $request['filters']: '';
 
 
         try{
-            $res = $this->service->getCalls($size, $search);
+            $res = $this->service->getCalls($size, $search, $filters);
 
             if(!empty($res) && !is_null($res)){
                 return apiSuccess($res);
