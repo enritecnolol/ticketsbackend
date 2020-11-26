@@ -102,7 +102,7 @@ class CallsServices
         }
 
 
-        return $calls->orderBy('id', 'DESC')->paginate($size);
+        return $calls->paginate($size);
     }
     #=============================\Assistance Type\================================================================
     public function insertAssistanceType($data)
