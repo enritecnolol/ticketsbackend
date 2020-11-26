@@ -19,7 +19,6 @@ class CreateTableCalendarEvents extends Migration
             $table->date('start');
             $table->date('end_date');
             $table->string('classname');
-            $table->string('classname');
             $table->integer('user_id');
             $table->timestamps();
         });
