@@ -96,10 +96,10 @@ class CallsServices
             $calls->whereBetween('call.date', [$date_from , $date_to]);
         }
 
-        if($filters['client'])
-        {
-            $calls->where('call.client_id', $filters['client']);
-        }
+//        if($filters['client'])
+//        {
+//            $calls->where('call.client_id', $filters['client']);
+//        }
 
 
         return $calls->paginate($size);
