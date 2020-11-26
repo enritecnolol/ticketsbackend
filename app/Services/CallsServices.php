@@ -93,7 +93,7 @@ class CallsServices
 
         if($filters['date'])
         {
-            $calls->whereBetween('date', [$filters['date_from'],$filters['date_to']]);
+            $calls->whereBetween('date', [$filters['date']['date_from'] ,$filters['date']['date_to']]);
         }
 
         if($filters['client'])
