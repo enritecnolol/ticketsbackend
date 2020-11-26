@@ -102,7 +102,6 @@ class CallsServices
             $calls->where('call.client_id', $filters['client']);
         }
 
-        return $filters['client'];
         return $calls->paginate($size);
     }
     #=============================\Assistance Type\================================================================
