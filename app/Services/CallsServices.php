@@ -104,7 +104,7 @@ class CallsServices
 
 
 //        return $calls->paginate($size);
-        return $filters;
+        return $filters['date']['date_from'];
     }
     #=============================\Assistance Type\================================================================
     public function insertAssistanceType($data)
