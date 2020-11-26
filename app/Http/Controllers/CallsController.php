@@ -105,8 +105,7 @@ class CallsController extends Controller
     {
         $size = isset($request['size']) ? $request['size']: '10';
         $search = isset($request['search']) ? $request['search']: '';
-        $filters = isset($request['filters']) ? $request['filters']: '';
-        return apiSuccess(json_decode($filters, true));
+        $filters = isset($request['filters']) ? json_decode($request['filters'], true): '';
 
         try{
             $res = $this->service->getCalls($size, $search, $filters);
