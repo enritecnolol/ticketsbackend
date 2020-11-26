@@ -111,7 +111,7 @@ class CallsController extends Controller
             $res = $this->service->getCalls(
                 $size,
                 $search,
-                isset($request['filters']) ? $filters : null
+                isset($request['filters']) ? $filters : []
             );
 
             if(!empty($res) && !is_null($res)){
