@@ -91,15 +91,15 @@ class CallsServices
             ->where('call.status', true)
             ->select('call.*', 'client.clie_nombre');
 
-        if($filters['date'])
-        {
-            $calls->whereBetween('call.date', [$filters['date']['date_from'] ,$filters['date']['date_to']]);
-        }
-
-        if($filters['client'])
-        {
-            $calls->where('call.client_id', $filters['client']);
-        }
+//        if($filters['date'])
+//        {
+//            $calls->whereBetween('call.date', [$filters['date']['date_from'] ,$filters['date']['date_to']]);
+//        }
+//
+//        if($filters['client'])
+//        {
+//            $calls->where('call.client_id', $filters['client']);
+//        }
 
 
         return $calls->paginate($size);
