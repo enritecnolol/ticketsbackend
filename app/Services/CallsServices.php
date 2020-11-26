@@ -83,7 +83,7 @@ class CallsServices
         return $call;
     }
 
-    public function getCalls($size, $search, $date_from, $date_to)
+    public function getCalls($size, $search, array $filters)
     {
         $calls = DB::connection('client')
             ->table(DB::raw('public.calls call'))
@@ -91,10 +91,11 @@ class CallsServices
             ->where('call.status', true)
             ->select('call.*', 'client.clie_nombre');
 
-        if($date_from && $date_to)
-        {
-            $calls->whereBetween('call.date', [$date_from , $date_to]);
-        }
+
+
+//        $calls->whereBetween('call.date', [$date_from , $date_to]);
+
+
 
 //        if($filters['client'])
 //        {
@@ -102,7 +103,8 @@ class CallsServices
 //        }
 
 
-        return $calls->paginate($size);
+//        return $calls->paginate($size);
+        return $filters;
     }
     #=============================\Assistance Type\================================================================
     public function insertAssistanceType($data)

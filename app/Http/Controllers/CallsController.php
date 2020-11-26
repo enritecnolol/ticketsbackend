@@ -111,8 +111,7 @@ class CallsController extends Controller
             $res = $this->service->getCalls(
                 $size,
                 $search,
-                $filters? $filters['date']['date_from']:null,
-                $filters?$filters['date']['date_to']:null
+                isset($request['filters']) ? $filters : null
             );
 
             if(!empty($res) && !is_null($res)){
