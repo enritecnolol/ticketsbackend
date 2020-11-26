@@ -108,7 +108,7 @@ class CallsController extends Controller
         $filters = isset($request['filters']) ? json_decode($request['filters'], true) : '';
 
         try{
-            $res = $this->service->getCalls($size, $search, $filters);
+            $res = $this->service->getCalls($size, $search, $filters['date']['date_from'],$filters['date']['date_to']);
 
             if(!empty($res) && !is_null($res)){
                 return apiSuccess($res);
