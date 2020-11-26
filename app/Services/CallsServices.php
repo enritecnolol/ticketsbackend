@@ -92,19 +92,11 @@ class CallsServices
             ->select('call.*', 'client.clie_nombre');
 
 
+        if(isset($filters['date'])){
+            $calls->whereBetween('call.date', [$filters['date']['date_from'] , $filters['date']['date_to']]);
+        }
 
-//        $calls->whereBetween('call.date', [$date_from , $date_to]);
-
-
-
-//        if($filters['client'])
-//        {
-//            $calls->where('call.client_id', $filters['client']);
-//        }
-
-
-//        return $calls->paginate($size);
-        return $filters['date']['date_from'];
+        return $calls->paginate($size);
     }
     #=============================\Assistance Type\================================================================
     public function insertAssistanceType($data)
