@@ -136,7 +136,7 @@ class ProjectsServices
 
     }
 
-    public function getProjects($search, $filter, $size = 10){
+    public function getProjects($search, array $filter, $size = 10){
 
         $projects = DB::connection('client')
             ->table(DB::raw('public.projects as p'))
@@ -147,9 +147,9 @@ class ProjectsServices
 
         if($search)
             $projects->where('p.title', 'like', '%' . $search . '%');
-        if($filter['project_status'])
+        if(isset($filter['project_status']))
             $projects->where('p.project_status_id', $filter['project_status']);
-        if($filter['project_type'])
+        if(isset($filter['project_type']))
             $projects->where('p.project_type_id', $filter['project_type']);
 
         $projects->select('p.*', 'ps.name as status_name', 'py.name as type_name');

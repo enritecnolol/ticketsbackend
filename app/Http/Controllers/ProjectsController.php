@@ -255,7 +255,7 @@ class ProjectsController extends Controller
     public function getProjects(Request $request)
     {
         $search = isset($request['search']) ? $request['search']: '';
-        $filter = isset($request['filter']) ? $request['filter']: '';
+        $filter = isset($request['filter']) ? json_decode($request['filter'], true): [];
         $size = isset($request['size']) ? $request['size']: '';
 
         try{
