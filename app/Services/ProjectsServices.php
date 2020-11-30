@@ -165,9 +165,11 @@ class ProjectsServices
             ->where('pt.project_id', $id)
             ->join(DB::raw('public.tickets as t'),'pt.ticket_id','=','t.id')
             ->join(DB::raw('public.tickets_user as tu'),'t.id','=','tu.ticket_id')
-            ->orWhere('tu.user_id', Auth::id())
+            ->where('tu.user_id', Auth::id())
             ->orWhere('t.user_id', Auth::id())
-            ->select('t.*')->toSql();
+            ->select('t.*')
+            ->groupBy(['t.id', 'status_id', 'client_id', 't.user_id','company_id', 'priority_id', 'title', 'note', 't.created_at', 't.updated_at', 'status'])
+            ->get();
 
     }
 
