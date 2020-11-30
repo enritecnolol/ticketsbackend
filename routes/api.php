@@ -100,6 +100,11 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::post('company', 'CompaniesController@store');
     Route::get('company', 'CompaniesController@index');
     Route::put('company', 'CompaniesController@edit');
+    /*===============================\Calendario\=======================================*/
+    Route::get('timeSheets', 'TimeSheetsController@getTimeSheets');
+    Route::post('timeSheet', 'TimeSheetsController@storeTimeSheets');
+    Route::put('timeSheet', 'TimeSheetsController@editTimeSheets');
+    Route::delete('timeSheet', 'TimeSheetsController@deleteTimeSheets');
 
     /*===============================/migration update\=======================================*/
     Route::post('update/database', function (){
