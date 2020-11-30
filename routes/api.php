@@ -91,6 +91,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::get('project/detail', 'ProjectsController@getProjectDetail');
     Route::get('project/users', 'ProjectsController@getProjectUsers');
     Route::get('project/clients', 'ProjectsController@getProjectClients');
+    Route::get('project/tickets/user', 'ProjectsController@getProjectsTicketsUser');
     /*===============================\Calendario\=======================================*/
     Route::get('calendarEvents', 'CalendarController@getCalendarEvents');
     Route::post('calendarEvent', 'CalendarController@storeCalendarEvents');
@@ -100,7 +101,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::post('company', 'CompaniesController@store');
     Route::get('company', 'CompaniesController@index');
     Route::put('company', 'CompaniesController@edit');
-    /*===============================\Calendario\=======================================*/
+    /*===============================\TimeSheet\=======================================*/
     Route::get('timeSheets', 'TimeSheetsController@getTimeSheets');
     Route::post('timeSheet', 'TimeSheetsController@storeTimeSheets');
     Route::put('timeSheet', 'TimeSheetsController@editTimeSheets');

@@ -272,6 +272,24 @@ class ProjectsController extends Controller
         }
     }
 
+    public function getProjectsTicketsUser(Request $request)
+    {
+        $id = isset($request['id']) ? $request['id']: '';
+
+        try{
+            $res = $this->service->getProjectsTicketsUser($id);
+
+            if(!empty($res) && !is_null($res)){
+                return apiSuccess($res);
+            }else{
+                return apiSuccess(null, "No hay data disponible");
+            }
+
+        }catch (\Exception $e){
+            return apiError(null, $e->getMessage(), $e->getCode());
+        }
+    }
+
     public function getProjectsSelect(Request $request)
     {
 

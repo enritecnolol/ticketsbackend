@@ -158,6 +158,19 @@ class ProjectsServices
 
     }
 
+    public function getProjectsTicketsUser($id){
+
+        return DB::connection('client')
+            ->table(DB::raw('public.project_tickets as pt'))
+            ->where('pt.project_id', $id)
+            ->join(DB::raw('public.tickets as t'),'pt.ticket_id','=','t.id')
+            ->join(DB::raw('public.tickets_user as tu'),'t.id','=','tu.ticket_id')
+            ->orWhere('tu.user_id', Auth::id())
+            ->orWhere('t.user_id', Auth::id())
+            ->select('t.*')->toSql();
+
+    }
+
     public function getProjectsSelect(){
 
         $projects = DB::connection('client')
