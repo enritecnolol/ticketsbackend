@@ -60,6 +60,7 @@ class TimesheetServices
         if(isset($filters['project_id']))
             $timeSheets->where('project_id', $filters['project_id']);
 
+        $timeSheets->where('ts.status', true);
         return $timeSheets->paginate($size);
     }
 
