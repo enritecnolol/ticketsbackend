@@ -14,7 +14,7 @@ class TicketPanelServices
 
         $ticketStatus = DB::connection('client')
             ->table('public.tickets_user as tu')
-            ->join(DB::raw('public.tickets as ticket'),'tu.ticket_id','=','ticket.id')
+            ->rightJoin(DB::raw('public.tickets as ticket'),'tu.ticket_id','=','ticket.id')
             ->join(DB::raw('public.priorities as p'),'ticket.priority_id','=','p.id')
             ->join(DB::raw('public.cxc_clientes as cc'),'cc.clie_codigo','=','ticket.client_id')
             ->where('ticket.status', true)
