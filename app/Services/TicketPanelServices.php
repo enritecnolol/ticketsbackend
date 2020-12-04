@@ -21,7 +21,7 @@ class TicketPanelServices
             ->where('tu.user_id', Auth::id())
             ->orWhere('ticket.user_id', Auth::id())
             ->select('ticket.*', 'p.name as priority_name', 'cc.clie_nombre as clie_nombre');
-
+return $ticketStatus->toSql();
         $pending = $ticketStatus
             ->where('ticket.status_id', '=',1)
             ->get();
