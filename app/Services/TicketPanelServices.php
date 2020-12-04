@@ -12,44 +12,42 @@ class TicketPanelServices
     public function getTicketsClassified()
     {
 
-        $ticketStatus = DB::connection('client')
-            ->table('public.tickets_user as tu')
-            ->rightJoin(DB::raw('public.tickets as ticket'),'tu.ticket_id','=','ticket.id')
-            ->join(DB::raw('public.priorities as p'),'ticket.priority_id','=','p.id')
-            ->join(DB::raw('public.cxc_clientes as cc'),'cc.clie_codigo','=','ticket.client_id')
-            ->where('ticket.status', true)
-            ->where('tu.user_id', Auth::id())
-            ->orWhere('ticket.user_id', Auth::id())
-            ->select('ticket.*', 'p.name as priority_name', 'cc.clie_nombre as clie_nombre');
-return $ticketStatus->toSql();
-        $pending = $ticketStatus
-            ->where('ticket.status_id', '=',1)
-            ->get();
 
-        $in_process = $ticketStatus
-            ->where('ticket.status_id', '=',2)
-            ->get();
-
-        $reviews = $ticketStatus
-            ->where('ticket.status_id', '=',3)
-            ->get();
-
-        $reviewed = $ticketStatus
-            ->where('ticket.status_id', '=',4)
-            ->get();
-
-        $finished = $ticketStatus
-            ->where('ticket.status_id', '=',5)
-            ->get();
-
-        return [
-            "auth_id" => Auth::id(),
-            "pending" => $pending,
-            "in_process" => $in_process,
-            "reviews" => $reviews,
-            "reviewed" => $reviewed,
-            "finished" => $finished
+        $allStatus = [
+            "pending" => [],
+            "in_process" => [],
+            "reviews" => [],
+            "reviewed" => [],
+            "finished" => []
         ];
+        $status_idCounter = 1;
+
+        foreach ($allStatus as $key => $value)
+        {
+            $ticketStatus = DB::connection('client')
+                ->table('public.tickets as ticket')
+                ->join(DB::raw('public.priorities as p'),'ticket.priority_id','=','p.id')
+                ->join(DB::raw('public.cxc_clientes as cc'),'cc.clie_codigo','=','ticket.client_id')
+                ->where('ticket.status', true)
+                ->orWhere('ticket.user_id', Auth::id())
+                ->where('ticket.status_id', '=',$status_idCounter)
+                ->select('ticket.*', 'p.name as priority_name', 'cc.clie_nombre as clie_nombre');
+
+            $ticketStatusTicketUser = DB::connection('client')
+                ->table('public.tickets_user as tu')
+                ->join(DB::raw('public.tickets as ticket'),'tu.ticket_id','=','ticket.id')
+                ->join(DB::raw('public.priorities as p'),'ticket.priority_id','=','p.id')
+                ->join(DB::raw('public.cxc_clientes as cc'),'cc.clie_codigo','=','ticket.client_id')
+                ->where('ticket.status', true)
+                ->orWhere('tu.user_id', Auth::id())
+                ->where('ticket.status_id', '=',$status_idCounter)
+                ->select('ticket.*', 'p.name as priority_name', 'cc.clie_nombre as clie_nombre')->unionAll($ticketStatus);
+
+            $allStatus[$key] = $ticketStatusTicketUser->get();
+            $status_idCounter++;
+        }
+
+        return $allStatus;
 
     }
 }
