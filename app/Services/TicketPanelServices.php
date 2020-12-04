@@ -38,6 +38,7 @@ class TicketPanelServices
             ->get();
 
         return [
+            "auth_id" => Auth::id(),
             "pending" => $pending,
             "in_process" => $in_process,
             "reviews" => $reviews,
