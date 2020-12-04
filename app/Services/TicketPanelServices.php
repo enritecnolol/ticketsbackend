@@ -14,11 +14,12 @@ class TicketPanelServices
 
         $ticketStatus = DB::connection('client')
             ->table('public.tickets_user as tu')
-            ->where('tu.user_id', Auth::id())
-            ->where('ticket.status', true)
             ->join(DB::raw('public.tickets as ticket'),'tu.ticket_id','=','ticket.id')
             ->join(DB::raw('public.priorities as p'),'ticket.priority_id','=','p.id')
             ->join(DB::raw('public.cxc_clientes as cc'),'cc.clie_codigo','=','ticket.client_id')
+            ->where('tu.user_id', Auth::id())
+            ->orWhere('ticket.user_id', Auth::id())
+            ->where('ticket.status', true)
             ->select('ticket.*', 'p.name as priority_name', 'cc.clie_nombre as clie_nombre');
 
         $pending = $ticketStatus->where('ticket.status_id', 1)
