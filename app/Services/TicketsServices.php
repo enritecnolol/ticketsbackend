@@ -148,7 +148,7 @@ class TicketsServices
     public function insertTicket($data)
     {
         $ticket = Ticket::create([
-            'status_id' => $data['status_id'],
+            'status_id' => 1,
             'client_id' => $data['client_id'],
             'user_id' => Auth::id(),
             'tickets_type_id' => $data['tickets_type_id'],
@@ -195,7 +195,6 @@ class TicketsServices
     public function editTicket($data)
     {
         $ticket = Ticket::find($data['id']);
-        $ticket->status_id = $data['status_id'];
         $ticket->client_id = $data['client_id'];
         $ticket->tickets_type_id = $data['tickets_type_id'];
         $ticket->company_id = $data['company_id'];

@@ -106,6 +106,8 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::post('timeSheet', 'TimeSheetsController@storeTimeSheets');
     Route::put('timeSheet', 'TimeSheetsController@editTimeSheets');
     Route::delete('timeSheet', 'TimeSheetsController@deleteTimeSheets');
+    /*===============================\Tickets Dashboard\=======================================*/
+    Route::get('getTicketsClassified', 'TicketPanelController@getTicketsClassified');
 
     /*===============================/migration update\=======================================*/
     Route::post('update/database', function (){
