@@ -19,27 +19,27 @@ class TicketPanelServices
             ->join(DB::raw('public.cxc_clientes as cc'),'cc.clie_codigo','=','ticket.client_id')
             ->where('ticket.status', true)
             ->where('tu.user_id', Auth::id())
-            ->where('ticket.status_id', 2)
             ->orWhere('ticket.user_id', Auth::id())
             ->select('ticket.*', 'p.name as priority_name', 'cc.clie_nombre as clie_nombre');
 
         $pending = $ticketStatus
-            ->where('ticket.status_id', 1)
+            ->where('ticket.status_id', '=',1)
             ->get();
 
         $in_process = $ticketStatus
-            ->where('ticket.status_id', 2)
+            ->where('ticket.status_id', '=',2)
             ->get();
 
-        $reviews = $ticketStatus->where('ticket.status_id', 3)
+        $reviews = $ticketStatus
+            ->where('ticket.status_id', '=',3)
             ->get();
 
         $reviewed = $ticketStatus
-            ->where('ticket.status_id', 4)
+            ->where('ticket.status_id', '=',4)
             ->get();
 
         $finished = $ticketStatus
-            ->where('ticket.status_id', 5)
+            ->where('ticket.status_id', '=',5)
             ->get();
 
         return [
